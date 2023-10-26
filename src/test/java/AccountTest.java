@@ -52,10 +52,11 @@ public class AccountTest {
 	@Test
 	public void deposit_twice_into_the_same_account() {
 		checking.depositBalance(70);
+		checking.depositBalance(30);
 
 		double actual = checking.getBalance();
 
-		assertEquals(70, actual);
+		assertEquals(100, actual);
 	}
 
 	@Test
