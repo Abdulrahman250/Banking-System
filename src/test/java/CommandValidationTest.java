@@ -14,19 +14,21 @@ public class CommandValidationTest {
 	@Test
 	void valid_command() {
 		boolean actual = commandValidation.validate("Create checking 64737284 3.9");
-		assertTrue(actual);
 
+		assertTrue(actual);
 	}
 
 	@Test
 	void empty_command_will_be_invalid() {
 		boolean actual = commandValidation.validate(" ");
+
 		assertEquals(false, actual);
 	}
 
 	@Test
 	void valid_when_it_has_create_command() {
 		boolean actual = commandValidation.validate("Create checking 74638463 6.3");
+
 		assertTrue(actual);
 	}
 
@@ -61,6 +63,48 @@ public class CommandValidationTest {
 	@Test
 	void invalid_account_type_is_listed() {
 		boolean actual = commandValidation.validate("Create mastercard 48693947 5.4");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_since_cd_has_all_required_inputs() {
+		boolean actual = commandValidation.validate("Create cd 85648376 6.4 1200");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_since_cd_does_not_have_required_outputs() {
+		boolean actual = commandValidation.validate("Create cd 83766463 4.2");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_since_apr_is_in_range() {
+		boolean actual = commandValidation.validate("Create checking 78564575 8.9");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_since_apr_is_not_in_range() {
+		boolean actual = commandValidation.validate("Create checking 75637437 736.9");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_uniqueid_has_the_correct_amount_of_digits() {
+		boolean actual = commandValidation.validate("Create savings 75838564 5.3");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_since_uniqueid_has_the_incorrect_amount_of_digits() {
+		boolean actual = commandValidation.validate("Create checking 56382 3.4");
 
 		assertFalse(actual);
 	}
