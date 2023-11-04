@@ -1,4 +1,9 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class CommandValidation {
+	private Set<String> uniqueIDs = new HashSet<>();
+
 	public boolean validate(String command) {
 		String[] parts = command.split(" ");
 
@@ -34,19 +39,23 @@ public class CommandValidation {
 			return false;
 		}
 
-		if (!validUniqueID(uniqueID) || !validApr(apr)) {
+		if (!validUniqueID(uniqueID) || !validApr(apr) || duplicateID(uniqueID)) {
 			return false;
 		} else {
-			return true;
+			uniqueIDs.add(uniqueID);
 		}
+		return true;
 	}
 
 	private boolean validateDepositCommand(String[] parts) {
 		if (parts.length < 2) {
 			return false;
-		} else {
-			return true;
 		}
+
+		String amount = parts[1];
+
+		return validDepositAmount(amount);
+
 	}
 
 	private boolean validUniqueID(String uniqueID) {
@@ -60,5 +69,18 @@ public class CommandValidation {
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+
+	private boolean validDepositAmount(String amount) {
+		try {
+			double depositAmount = Double.parseDouble(amount);
+			return depositAmount >= 0.0;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private boolean duplicateID(String uniqueID) {
+		return uniqueIDs.contains(uniqueID);
 	}
 }

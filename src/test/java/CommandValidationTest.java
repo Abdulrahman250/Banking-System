@@ -108,4 +108,26 @@ public class CommandValidationTest {
 
 		assertFalse(actual);
 	}
+
+	@Test
+	void valid_deposit_amount() {
+		boolean actual = commandValidation.validate("deposit 400");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_deposit_amount() {
+		boolean actual = commandValidation.validate("deposit -300");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_when_there_is_duplicate_ids_made() {
+		boolean actual = commandValidation.validate("Create checking 12345678 3.4");
+		boolean actual2 = commandValidation.validate("Create savings 12345678 2.7");
+
+		assertFalse(actual2);
+	}
 }
