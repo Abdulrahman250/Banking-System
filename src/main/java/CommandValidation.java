@@ -12,7 +12,7 @@ public class CommandValidation {
 		case "create":
 			return validateCreateCommand(parts);
 		case "deposit":
-			return validateCreateCommand(parts);
+			return validateDepositCommand(parts);
 		default:
 			return false;
 		}
@@ -29,6 +29,14 @@ public class CommandValidation {
 		}
 
 		if (!accountType.equals("savings") && !accountType.equals("checking") && !accountType.equals("cd")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private boolean validateDepositCommand(String[] parts) {
+		if (parts.length < 2) {
 			return false;
 		} else {
 			return true;

@@ -36,4 +36,32 @@ public class CommandValidationTest {
 
 		assertFalse(actual);
 	}
+
+	@Test
+	void valid_when_it_includes_deposit_command() {
+		boolean actual = commandValidation.validate("Deposit 150");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_when_missing_deposit_command() {
+		boolean actual = commandValidation.validate("400");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_account_type_is_listed() {
+		boolean actual = commandValidation.validate("Create savings 64738362 6.8");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_account_type_is_listed() {
+		boolean actual = commandValidation.validate("Create mastercard 48693947 5.4");
+
+		assertFalse(actual);
+	}
 }
