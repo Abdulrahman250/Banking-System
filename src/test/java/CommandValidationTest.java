@@ -312,4 +312,95 @@ public class CommandValidationTest {
 
 		assertTrue(actual);
 	}
+
+	@Test
+	void invalid_savings_when_missing_apr() {
+		boolean actual = commandValidation.validate("Create savings 64277462");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_savings_when_uniqueid_contains_a_letter() {
+		boolean actual = commandValidation.validate("Create savings r6277462 7.1");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_savings() {
+		boolean actual = commandValidation.validate("Create savings 99277462 5.2");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_savings_when_initial_balance_is_not_0() {
+		boolean actual = commandValidation.validate("Create savings 23277462 9.0 4638");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_savings_when_apr_is_0() {
+		boolean actual = commandValidation.validate("Create savings 67277462 0");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_savings_when_apr_is_negative() {
+		boolean actual = commandValidation.validate("Create savings 68277462 -6.2");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_savings_when_apr_is_to_large() {
+		boolean actual = commandValidation.validate("Create savings 27277462 4466");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_savings_when_apr_is_10() {
+		boolean actual = commandValidation.validate("Create savings 58377462 10");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_savings_when_uniqueid_is_more_then_8() {
+		boolean actual = commandValidation.validate("Create savings 834746277462 3.9");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_savings_when_there_is_no_uniqueid() {
+		boolean actual = commandValidation.validate("Create savings 5.7");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_savings_even_when_create_is_capitalized() {
+		boolean actual = commandValidation.validate("CREATE savings 53277462 6.2");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void valid_case_capitalization() {
+		boolean actual = commandValidation.validate("CrEaTe savings 74636257 7.5");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_cd_when_initial_balance_is_negative() {
+		boolean actual = commandValidation.validate("Create cd 98765432 7.3 -27362");
+
+		assertFalse(actual);
+	}
 }
