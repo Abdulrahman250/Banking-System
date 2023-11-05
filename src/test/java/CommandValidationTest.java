@@ -221,4 +221,95 @@ public class CommandValidationTest {
 
 		assertTrue(actual);
 	}
+
+	@Test
+	void invalid_cd_when_initial_balance_is_to_small() {
+		boolean actual = commandValidation.validate("Create cd 56374382 5.3 21");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_cd() {
+		boolean actual = commandValidation.validate("Create cd 46372819 3.2 4302");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_cd_since_initial_balance_is_to_large() {
+		boolean actual = commandValidation.validate("Create cd 57383726 5.2 34628819103");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_cd_apr_is_to_large() {
+		boolean actual = commandValidation.validate("Create cd 46277462 762 4728");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_cd_missing_initial_balance() {
+		boolean actual = commandValidation.validate("Create cd 76277462 3.1");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_cd_when_apr_is_0() {
+		boolean actual = commandValidation.validate("Create cd 96277462 0 4718");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_cd_since_uniqueid_contains_a_letter() {
+		boolean actual = commandValidation.validate("Create cd 85d77462 8.3 4728");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_cd_when_apr_is_negative() {
+		boolean actual = commandValidation.validate("Create cd 23277462 -4.7 3732");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_cd_when_apr_is_10() {
+		boolean actual = commandValidation.validate("Create cd 74277462 10 9828");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_cd_when_missing_uniqueid() {
+		boolean actual = commandValidation.validate("Create cd 7.4 9463");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_cd_when_missing_apr() {
+		boolean actual = commandValidation.validate("Create cd 16277462 7328");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_cd_when_uniqueid_is_not_8_digits() {
+		boolean actual = commandValidation.validate("Create cd 46271217462 6.3 8562");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_cd_even_when_create_is_capitalized() {
+		boolean actual = commandValidation.validate("CREATE cd 74277462 2.2 4428");
+
+		assertTrue(actual);
+	}
 }
