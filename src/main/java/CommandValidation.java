@@ -36,6 +36,14 @@ public class CommandValidation {
 			return false;
 		}
 
+		if (accountType.equals("checking") && parts.length > 4) {
+			return false;
+		}
+
+		if (accountType.equals("savings") && parts.length > 4) {
+			return false;
+		}
+
 		if (!accountType.equals("savings") && !accountType.equals("checking") && !accountType.equals("cd")) {
 			return false;
 		}

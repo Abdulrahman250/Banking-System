@@ -144,4 +144,81 @@ public class CommandValidationTest {
 
 		assertTrue(actual);
 	}
+
+	@Test
+	void valid_checking() {
+		boolean actual = commandValidation.validate("Create checking 64738328 3.2");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void when_apr_is_negative_checking_is_invalid() {
+		boolean actual = commandValidation.validate("Create checking 34279478 -3.2");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void when_apr_is_0_checking_is_valid() {
+		boolean actual = commandValidation.validate("Create checking 46378438 0");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void if_apr_is_too_large_checking_is_invalid() {
+		boolean actual = commandValidation.validate("Create checking 37468564 24824");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void if_apr_is_10_then_checking_is_valid() {
+		boolean actual = commandValidation.validate("Create checking 45372876 10");
+
+		assertTrue(actual);
+	}
+
+	@Test
+	void invalid_checking_when_uniqueid_is_missing() {
+		boolean actual = commandValidation.validate("Create checking 4.2");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void unique_id_contains_a_letter_which_makes_checking_invalid() {
+		boolean actual = commandValidation.validate("Create checking 4536e837 7.4");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_checking_when_apr_is_missing() {
+		boolean actual = commandValidation.validate("Create checking 46284638");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_checking_since_starting_balance_is_not_0() {
+		boolean actual = commandValidation.validate("Create checking 56373829 5.3 382");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void invalid_checking_when_uniqueid_is_not_8_digits() {
+		boolean actual = commandValidation.validate("Create checking 563728 3.2");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_checking_even_when_create_is_capitalized() {
+		boolean actual = commandValidation.validate("CREATE checking 57493827 5.3");
+
+		assertTrue(actual);
+	}
 }
