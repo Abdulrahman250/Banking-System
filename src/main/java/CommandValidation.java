@@ -27,6 +27,7 @@ public class CommandValidation {
 		if (parts.length < 4) {
 			return false;
 		}
+
 		String accountType = parts[1].toLowerCase();
 		String uniqueID = parts[2];
 		String apr = parts[3];
@@ -43,6 +44,13 @@ public class CommandValidation {
 			return false;
 		} else {
 			uniqueIDs.add(uniqueID);
+		}
+
+		if (accountType.equals("cd")) {
+			String initialBalance = parts[4];
+			if (!validInitialBalance(initialBalance)) {
+				return false;
+			}
 		}
 		return true;
 	}
@@ -82,5 +90,14 @@ public class CommandValidation {
 
 	private boolean duplicateID(String uniqueID) {
 		return uniqueIDs.contains(uniqueID);
+	}
+
+	private boolean validInitialBalance(String initialBalance) {
+		try {
+			double balanceValue = Double.parseDouble(initialBalance);
+			return balanceValue >= 1000 && balanceValue <= 10000;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 }

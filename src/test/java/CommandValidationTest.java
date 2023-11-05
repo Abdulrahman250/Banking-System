@@ -130,4 +130,18 @@ public class CommandValidationTest {
 
 		assertFalse(actual2);
 	}
+
+	@Test
+	void invalid_cd_does_not_have_the_correct_amount_for_starting_balance() {
+		boolean actual = commandValidation.validate("Create cd 64738276 7.5 3848728492");
+
+		assertFalse(actual);
+	}
+
+	@Test
+	void valid_cd_has_the_correct_amount_for_starting_balance() {
+		boolean actual = commandValidation.validate("Create cd 65748378 4.3 6753");
+
+		assertTrue(actual);
+	}
 }
