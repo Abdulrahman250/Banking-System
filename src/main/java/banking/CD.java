@@ -1,3 +1,5 @@
+package banking;
+
 public class CD extends Account {
 
 	private double balance;

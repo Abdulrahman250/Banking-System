@@ -1,3 +1,5 @@
+package banking;
+
 public class CreateValidation extends CommandValidation {
 	@Override
 	public boolean validate(String command) {

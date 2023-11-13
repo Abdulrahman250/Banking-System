@@ -1,3 +1,5 @@
+package banking;
+
 public abstract class Account {
 	protected double APR;
 	protected double balance;
