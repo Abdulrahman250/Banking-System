@@ -11,7 +11,7 @@ public class StoreCommandsTest {
 
 	@BeforeEach
 	public void setUp() {
-		storeCommands = new StoreCommands();
+		storeCommands = new banking.StoreCommands();
 	}
 
 	@Test

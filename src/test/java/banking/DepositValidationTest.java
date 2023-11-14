@@ -11,7 +11,7 @@ public class DepositValidationTest {
 
 	@BeforeEach
 	void setUp() {
-		depositValidation = new DepositValidation();
+		depositValidation = new banking.DepositValidation();
 	}
 
 	@Test

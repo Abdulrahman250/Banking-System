@@ -12,7 +12,7 @@ public class BankTest {
 
 	@BeforeEach
 	public void setUp() {
-		bank = new Bank();
+		bank = new banking.Bank();
 	}
 
 	@Test

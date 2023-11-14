@@ -11,7 +11,7 @@ public class CreateValidationTest {
 
 	@BeforeEach
 	void setUp() {
-		createValidation = new CreateValidation();
+		createValidation = new banking.CreateValidation();
 	}
 
 	@Test

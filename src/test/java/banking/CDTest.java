@@ -15,7 +15,7 @@ public class CDTest {
 
 	@BeforeEach
 	public void setUp() {
-		cd = new CD(APR, UNIQUEID, BALANCE);
+		cd = new banking.CD(APR, UNIQUEID, BALANCE);
 	}
 
 	@Test

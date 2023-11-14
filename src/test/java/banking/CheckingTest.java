@@ -14,7 +14,7 @@ public class CheckingTest {
 
 	@BeforeEach
 	public void setUp() {
-		checking = new Checking(APR, UNIQUE_ID);
+		checking = new banking.Checking(APR, UNIQUE_ID);
 	}
 
 	@Test

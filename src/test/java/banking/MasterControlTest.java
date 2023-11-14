@@ -16,9 +16,9 @@ public class MasterControlTest {
 	@BeforeEach
 	void setUp() {
 		input = new ArrayList<>();
-		Bank bank = new Bank();
-		masterControl = new MasterControl(new CreateValidation(), new CommandProcessor(bank), new StoreCommands(),
-				new DepositValidation());
+		Bank bank = new banking.Bank();
+		masterControl = new banking.MasterControl(new banking.CreateValidation(), new banking.CommandProcessor(bank),
+				new banking.StoreCommands(), new banking.DepositValidation());
 
 	}
 

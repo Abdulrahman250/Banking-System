@@ -14,7 +14,7 @@ public class SavingsTest {
 
 	@BeforeEach
 	public void setUp() {
-		savings = new Savings(APR, UNIQUE_ID);
+		savings = new banking.Savings(APR, UNIQUE_ID);
 	}
 
 	@Test
