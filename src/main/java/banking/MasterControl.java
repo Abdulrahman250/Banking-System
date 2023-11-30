@@ -5,14 +5,14 @@ import java.util.List;
 public class MasterControl {
 	private CreateValidation createValidation;
 	private CommandProcessor commandProcessor;
-	private StoreCommands storeCommands;
+	private CommandStorage commandStorage;
 	private DepositValidation depositValidation;
 
 	public MasterControl(CreateValidation createValidation, CommandProcessor commandProcessor,
-			StoreCommands storeCommands, DepositValidation depositValidation) {
+			CommandStorage commandStorage, DepositValidation depositValidation) {
 		this.createValidation = createValidation;
 		this.commandProcessor = commandProcessor;
-		this.storeCommands = storeCommands;
+		this.commandStorage = commandStorage;
 		this.depositValidation = depositValidation;
 	}
 
@@ -21,9 +21,9 @@ public class MasterControl {
 			if (createValidation.validate(command)) {
 				commandProcessor.processCommand(command);
 			} else {
-				storeCommands.addInvalidCommands(command);
+				commandStorage.addInvalidCommands(command);
 			}
 		}
-		return storeCommands.getInvalidCommands();
+		return commandStorage.getInvalidCommands();
 	}
 }

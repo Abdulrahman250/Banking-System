@@ -18,7 +18,7 @@ public class MasterControlTest {
 		input = new ArrayList<>();
 		Bank bank = new banking.Bank();
 		masterControl = new banking.MasterControl(new banking.CreateValidation(), new banking.CommandProcessor(bank),
-				new banking.StoreCommands(), new banking.DepositValidation());
+				new CommandStorage(), new banking.DepositValidation());
 
 	}
 
