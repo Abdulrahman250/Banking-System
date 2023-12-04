@@ -14,4 +14,13 @@ public class DepositValidation extends CommandValidation {
 		return validDepositAmount(amount);
 
 	}
+
+	protected boolean validDepositAmount(String amount) {
+		try {
+			double depositAmount = Double.parseDouble(amount);
+			return depositAmount >= 0.0;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
 }

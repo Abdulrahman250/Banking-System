@@ -12,34 +12,7 @@ public abstract class CommandValidation {
 		return uniqueID.matches("\\d{8}");
 	}
 
-	protected boolean validApr(String apr) {
-		try {
-			double aprValue = Double.parseDouble(apr);
-			return aprValue >= 0.0 && aprValue <= 10.0;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
-	protected boolean validDepositAmount(String amount) {
-		try {
-			double depositAmount = Double.parseDouble(amount);
-			return depositAmount >= 0.0;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
 	protected boolean duplicateID(String uniqueID) {
 		return uniqueIDs.contains(uniqueID);
-	}
-
-	protected boolean validInitialBalance(String initialBalance) {
-		try {
-			double balanceValue = Double.parseDouble(initialBalance);
-			return balanceValue >= 1000 && balanceValue <= 10000;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 }
