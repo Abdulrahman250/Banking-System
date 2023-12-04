@@ -22,8 +22,6 @@ public abstract class Account {
 	public void depositBalance(double addToBalance) {
 		if (addToBalance >= 0) {
 			balance += addToBalance;
-		} else {
-			System.out.println("You can't deposit a negative number");
 		}
 	}
 
@@ -33,8 +31,6 @@ public abstract class Account {
 			if (balance < 0) {
 				balance = 0;
 			}
-		} else {
-			System.out.println("You can't withdraw a negative number");
 		}
 	}
 
