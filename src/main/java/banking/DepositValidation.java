@@ -9,9 +9,10 @@ public class DepositValidation extends CommandValidation {
 			return false;
 		}
 
+		String validDeposit = parts[0];
 		String amount = parts[1];
 
-		return validDepositAmount(amount);
+		return validDepositAmount(amount) && validCommand(validDeposit);
 
 	}
 
@@ -22,5 +23,18 @@ public class DepositValidation extends CommandValidation {
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+
+	protected boolean validCommand(String command) {
+		String[] parts = command.split(" ");
+
+		if (parts.length < 1) {
+			return false;
+		}
+
+		String validCommand = parts[0].toLowerCase();
+
+		return validCommand.equals("deposit");
+
 	}
 }
