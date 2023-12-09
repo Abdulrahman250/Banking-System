@@ -13,4 +13,9 @@ public class CD extends Account {
 	public double getBalance() {
 		return balance;
 	}
+
+	@Override
+	public boolean canReceiveTransfers() {
+		return false;
+	}
 }

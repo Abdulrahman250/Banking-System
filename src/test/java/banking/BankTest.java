@@ -19,8 +19,7 @@ public class BankTest {
 	public void bank_is_created_with_no_accounts() {
 		Bank bank = new Bank();
 
-		assertTrue(Bank.getAccount().isEmpty());
-
+		assertTrue(bank.getAccount().isEmpty());
 	}
 
 	@Test
@@ -104,5 +103,4 @@ public class BankTest {
 
 		assertEquals(101, accountRetrieved.getBalance(), 0.001);
 	}
-
 }

@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
-	private static Map<Integer, Account> accounts;
+	private Map<Integer, Account> accounts;
 
 	Bank() {
-		accounts = new HashMap<>();
+		this.accounts = new HashMap<>();
 	}
 
-	public static Map<Integer, Account> getAccount() {
+	public Map<Integer, Account> getAccount() {
 		return accounts;
 	}
 
@@ -29,7 +29,8 @@ public class Bank {
 
 	public void withdraw(int uniqueID, double takeMoney) {
 		Account account = getAccount(uniqueID);
-
-		account.withdrawBalance(takeMoney);
+		if (account != null) {
+			account.withdrawBalance(takeMoney);
+		}
 	}
 }
