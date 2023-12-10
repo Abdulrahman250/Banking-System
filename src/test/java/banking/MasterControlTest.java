@@ -18,7 +18,8 @@ public class MasterControlTest {
 		input = new ArrayList<>();
 		Bank bank = new banking.Bank();
 		masterControl = new banking.MasterControl(new banking.CreateValidation(), new banking.CommandProcessor(bank),
-				new CommandStorage(), new banking.DepositValidation());
+				new CommandStorage(), new banking.DepositValidation(), new banking.PassCommandValidation(),
+				new banking.WithdrawCommandValidation(), new banking.TransferValidation(bank));
 
 	}
 
@@ -167,5 +168,25 @@ public class MasterControlTest {
 		List<String> actual = masterControl.start(input);
 
 		assertSingleCommand("Create checking 34635463 3.3 221", actual);
+	}
+
+	@Test
+	void invalid_typo_in_pass_command() {
+		input.add("pats 6");
+
+		List<String> actual = masterControl.start(input);
+
+		assertSingleCommand("pats 6", actual);
+
+	}
+
+	@Test
+	void typo_in_withdraw_command_is_invalid() {
+		input.add("witdraw 12345678 350");
+
+		List<String> actual = masterControl.start(input);
+
+		assertSingleCommand("witdraw 12345678 350", actual);
+
 	}
 }

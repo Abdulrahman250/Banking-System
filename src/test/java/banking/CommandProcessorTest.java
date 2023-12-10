@@ -1,6 +1,7 @@
 package banking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,5 +73,23 @@ public class CommandProcessorTest {
 		Account actual = bank.getAccount(12341234);
 
 		assertEquals(111, actual.getBalance());
+	}
+
+	@Test
+	public void pass_time_removes_accounts_with_zero_balance() {
+		String createAccount1 = "create savings 78328377 6.4";
+		String createAccount2 = "create checking 32456789 1.0";
+		String createAccount3 = "create cd 74658932 2.0 1500";
+		String passCommand = "pass 6";
+
+		commandProcessor.processCommand(createAccount1);
+		commandProcessor.processCommand(createAccount2);
+		commandProcessor.processCommand(createAccount3);
+		commandProcessor.processCommand(passCommand);
+
+		assertNull(bank.getAccount(78328377));
+
+		assertNull(bank.getAccount(32456789));
+
 	}
 }

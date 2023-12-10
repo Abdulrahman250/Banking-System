@@ -7,7 +7,7 @@ public abstract class Account {
 
 	public Account(double APR, int uniqueID) {
 		this.APR = APR;
-		this.balance = 0;
+		this.balance = balance;
 		this.uniqueID = uniqueID;
 	}
 
@@ -26,17 +26,27 @@ public abstract class Account {
 	}
 
 	public void withdrawBalance(double takeFromBalance) {
-		System.out.println("Before Withdraw - Balance: " + balance);
-		if (takeFromBalance >= 0 && balance >= takeFromBalance) {
+		if (takeFromBalance >= 0) {
 			balance -= takeFromBalance;
+			if (balance < 0) {
+				balance = 0;
+			}
 		}
-		System.out.println("After Withdraw - Balance: " + balance);
 	}
 
 	public int getUniqueID() {
 		return uniqueID;
 	}
 
+	public void processWithdrawal(double takeFromBalance) {
+		withdrawBalance(takeFromBalance);
+	}
+
+	public void resetMonthlyWithdrawals() {
+
+	}
+
 	public abstract boolean canReceiveTransfers();
 
+	public abstract void calculateInterest(int months);
 }

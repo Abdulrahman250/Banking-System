@@ -27,9 +27,25 @@ public class CommandProcessor {
 		} else if (commandType.equals("deposit")) {
 			int uniqueID = Integer.parseInt(parts[1]);
 			double amount = Double.parseDouble(parts[2]);
-
 			Account account = bank.getAccount(uniqueID);
 			account.depositBalance(amount);
+
+		} else if (commandType.equals("pass")) {
+			int months = Integer.parseInt(parts[1]);
+			bank.passTime(months);
+
+		} else if (commandType.equals("withdraw")) {
+			int uniqueID = Integer.parseInt(parts[1]);
+			double amount = Double.parseDouble(parts[2]);
+			Account account = bank.getAccount(uniqueID);
+			bank.withdraw(uniqueID, amount);
+
+		} else if (commandType.equals("transfer")) {
+			int fromID = Integer.parseInt(parts[1]);
+			int toID = Integer.parseInt(parts[2]);
+			double amount = Double.parseDouble(parts[3]);
+			bank.transfer(fromID, toID, amount);
+
 		}
 	}
 }
