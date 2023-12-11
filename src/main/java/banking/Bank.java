@@ -45,7 +45,7 @@ public class Bank {
 				Map.Entry<Integer, Account> entry = iterator.next();
 				Account account = entry.getValue();
 
-				if (account.getBalance() == 0 && months > 0 && months < 61) {
+				if (account.getBalance() <= 0 && months > 0 && months < 61) {
 					iterator.remove();
 				} else {
 					if (account.getBalance() < 100) {
@@ -84,5 +84,4 @@ public class Bank {
 			return;
 		}
 	}
-
 }

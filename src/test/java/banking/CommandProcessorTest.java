@@ -13,7 +13,7 @@ public class CommandProcessorTest {
 
 	@BeforeEach
 	public void setUp() {
-		bank = new Bank();
+		bank = new banking.Bank();
 		commandProcessor = new banking.CommandProcessor(bank);
 	}
 
