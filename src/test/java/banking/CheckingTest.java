@@ -1,32 +1,34 @@
+package banking;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class SavingsTest {
+public class CheckingTest {
 
-	private static final double APR = 6.3;
 	private static final int UNIQUE_ID = 74538932;
+	private static final double APR = 7.6;
 
-	Savings savings;
+	Checking checking;
 
 	@BeforeEach
 	public void setUp() {
-		savings = new Savings(APR, UNIQUE_ID);
+		checking = new banking.Checking(APR, UNIQUE_ID);
 	}
 
 	@Test
 	public void checking_created_with_starting_balance_0() {
-		double actual = savings.getBalance();
+		double actual = checking.getBalance();
 
 		assertEquals(0, actual);
 
 	}
 
 	@Test
-	public void the_supplied_apr_value_for_savings() {
-		double actual = savings.getAPR();
+	public void the_checking_apr_value() {
+		double actual = checking.getAPR();
 
-		assertEquals(6.3, actual);
+		assertEquals(7.6, actual);
 	}
 }

@@ -1,3 +1,5 @@
+package banking;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +15,7 @@ public class CDTest {
 
 	@BeforeEach
 	public void setUp() {
-		cd = new CD(APR, UNIQUEID, BALANCE);
+		cd = new banking.CD(APR, UNIQUEID, BALANCE);
 	}
 
 	@Test

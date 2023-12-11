@@ -1,3 +1,5 @@
+package banking;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +14,7 @@ public class AccountTest {
 
 	@BeforeEach
 	public void setUp() {
-		checking = new Checking(APR, UNIQUE_ID);
+		checking = new banking.Checking(APR, UNIQUE_ID);
 	}
 
 	@Test
